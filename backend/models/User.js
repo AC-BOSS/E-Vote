@@ -3,7 +3,8 @@ const mongoose = require("mongoose");
 const UserSchema = mongoose.Schema({
     email:{
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     password:{
         type: String,
@@ -12,6 +13,11 @@ const UserSchema = mongoose.Schema({
     isAdmin:{
         type: Boolean,
         required: true
+    },
+    verified:{
+        type: Boolean,
+        required: true,
+        default: false
     }
 });
 
