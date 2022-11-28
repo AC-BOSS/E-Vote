@@ -15,6 +15,7 @@ const PollSchema = mongoose.Schema({
     votedList: [String],
     candidates: [{
         name: String,
+        manifesto: String,
         votes: Number
     }],
     creator: String

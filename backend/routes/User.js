@@ -63,11 +63,11 @@ router.post("/login", async(req, res) => {
         }
         const validPassword = await bcrypt.compare(password, user.password)
         if(!validPassword) {
-            return res.status(400).json("wrong password");
+            return res.status(403).json("wrong password");
         }
         const accessToken = jwt.sign({email, isAdmin:user.isAdmin}, process.env.JWT_SECRET, {expiresIn:"1d"});
         // console.log(user.isAdmin);
-        res.json({email, isAdmin: user.isAdmin, accessToken});
+        res.json({email, isAdmin: user.isAdmin, accessToken: "Bearer "+accessToken});
     } catch (err) {
         console.log(err);
         res.status(500).json(err)
